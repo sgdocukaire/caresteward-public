@@ -20,6 +20,7 @@ This is a responsive, three-step visual that explains our core value proposition
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Icons**: Custom SVG icons
+- **Testing**: Jest + React Testing Library
 - **Deployment**: Ready for Vercel, Netlify, or any static hosting
 
 ## Features
@@ -67,6 +68,21 @@ npm run build
 npm start
 ```
 
+### Testing
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests for CI environment
+npm run test:ci
+```
+
 ## Component Usage
 
 The `ProblemSolutionGraphic` component can be imported and used in any Next.js application:
@@ -112,7 +128,20 @@ caresteward-public/
 │   └── globals.css
 ├── components/
 │   └── ProblemSolutionGraphic.tsx
+├── __tests__/
+│   ├── app/
+│   │   └── page.test.tsx
+│   ├── components/
+│   │   └── ProblemSolutionGraphic.test.tsx
+│   └── utils/
+│       └── test-utils.ts
+├── docs/
+│   ├── README.md
+│   ├── API.md
+│   └── TESTING.md
 ├── tailwind.config.ts
+├── jest.config.js
+├── jest.setup.js
 └── README.md
 ```
 
@@ -120,6 +149,10 @@ caresteward-public/
 - `components/ProblemSolutionGraphic.tsx` - The main component
 - `app/page.tsx` - Demo page showcasing the component
 - `tailwind.config.ts` - Custom Tailwind configuration
+- `jest.config.js` - Jest testing configuration
+- `jest.setup.js` - Test setup and mocks
+- `__tests__/` - Test files and utilities
+- `docs/` - Comprehensive documentation
 
 ## Portfolio Context
 
@@ -129,6 +162,27 @@ This component was built as part of The Care Steward's user experience, demonstr
 - **Responsive Design**: Mobile-first, accessible design
 - **Professional Styling**: Clean, modern UI with Tailwind CSS
 - **Component Architecture**: Reusable, well-structured components
+- **Comprehensive Testing**: Full test coverage with Jest and React Testing Library
+- **Documentation**: Complete API and testing documentation
+
+## Testing
+
+The project includes comprehensive testing setup with:
+
+- **Unit Tests**: Component rendering, structure, and behavior tests
+- **Accessibility Tests**: ARIA attributes, semantic HTML, and screen reader support
+- **Responsive Design Tests**: Mobile, tablet, and desktop layout verification
+- **Coverage Reports**: Detailed coverage analysis and reporting
+
+See the [Testing Documentation](docs/TESTING.md) for detailed information about the testing strategy and setup.
+
+## Documentation
+
+Complete documentation is available in the `docs/` directory:
+
+- [Main Documentation](docs/README.md) - Setup, usage, and development guide
+- [API Documentation](docs/API.md) - Component APIs and interfaces
+- [Testing Documentation](docs/TESTING.md) - Testing strategy and best practices
 
 ## License
 
