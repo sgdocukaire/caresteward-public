@@ -141,18 +141,18 @@ describe('ProblemSolutionGraphic', () => {
   describe('Component Props and Behavior', () => {
     it('renders consistently without props', () => {
       const { rerender } = render(<ProblemSolutionGraphic />);
-      expect(screen.getByText('Your Challenge')).toBeInTheDocument();
+      expect(screen.getAllByText('Your Challenge')[0]).toBeInTheDocument();
       
       rerender(<ProblemSolutionGraphic />);
-      expect(screen.getByText('Your Challenge')).toBeInTheDocument();
+      expect(screen.getAllByText('Your Challenge')[0]).toBeInTheDocument();
     });
 
     it('maintains structure across re-renders', () => {
       const { rerender } = render(<ProblemSolutionGraphic />);
-      const initialStructure = screen.getByRole('region').innerHTML;
+      const initialStructure = screen.getByText('Your Challenge').closest('section')?.innerHTML;
       
       rerender(<ProblemSolutionGraphic />);
-      const reRenderedStructure = screen.getByRole('region').innerHTML;
+      const reRenderedStructure = screen.getByText('Your Challenge').closest('section')?.innerHTML;
       
       expect(reRenderedStructure).toBe(initialStructure);
     });

@@ -3,10 +3,40 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Home from '../../app/page';
 
-// Mock the ProblemSolutionGraphic component
+// Mock all components
 jest.mock('../../components/ProblemSolutionGraphic', () => {
   return function MockProblemSolutionGraphic() {
     return <div data-testid="problem-solution-graphic">Problem Solution Graphic</div>;
+  };
+});
+
+jest.mock('../../components/InteractiveDemo', () => {
+  return function MockInteractiveDemo() {
+    return <div data-testid="interactive-demo">Interactive Demo</div>;
+  };
+});
+
+jest.mock('../../components/DataVisualization', () => {
+  return function MockDataVisualization() {
+    return <div data-testid="data-visualization">Data Visualization</div>;
+  };
+});
+
+jest.mock('../../components/PerformanceMonitor', () => {
+  return function MockPerformanceMonitor() {
+    return <div data-testid="performance-monitor">Performance Monitor</div>;
+  };
+});
+
+jest.mock('../../components/Navigation', () => {
+  return function MockNavigation() {
+    return <nav data-testid="navigation">Navigation</nav>;
+  };
+});
+
+jest.mock('../../components/Footer', () => {
+  return function MockFooter() {
+    return <footer data-testid="footer">Footer</footer>;
   };
 });
 
@@ -22,11 +52,11 @@ describe('Home Page', () => {
 
     it('renders the main heading', () => {
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
-      expect(screen.getByText('UI Component Showcase')).toBeInTheDocument();
+      expect(screen.getByText('Professional UI Component Showcase')).toBeInTheDocument();
     });
 
     it('renders the description paragraph', () => {
-      const description = screen.getByText(/A responsive, three-step visual component/);
+      const description = screen.getByText(/A comprehensive collection of responsive, interactive components/);
       expect(description).toBeInTheDocument();
     });
 
@@ -61,8 +91,8 @@ describe('Home Page', () => {
     });
 
     it('has the correct description styling', () => {
-      const description = screen.getByText(/A responsive, three-step visual component/);
-      expect(description).toHaveClass('text-xl', 'text-gray-600', 'max-w-2xl', 'mx-auto');
+      const description = screen.getByText(/A comprehensive collection of responsive, interactive components/);
+      expect(description).toHaveClass('text-xl', 'text-gray-600', 'max-w-3xl', 'mx-auto');
     });
 
     it('has the correct footer styling', () => {
@@ -90,15 +120,21 @@ describe('Home Page', () => {
   });
 
   describe('Component Integration', () => {
-    it('integrates the ProblemSolutionGraphic component', () => {
-      const graphicComponent = screen.getByTestId('problem-solution-graphic');
-      expect(graphicComponent).toBeInTheDocument();
+    it('integrates all components correctly', () => {
+      expect(screen.getByTestId('problem-solution-graphic')).toBeInTheDocument();
+      expect(screen.getByTestId('interactive-demo')).toBeInTheDocument();
+      expect(screen.getByTestId('data-visualization')).toBeInTheDocument();
+      expect(screen.getByTestId('performance-monitor')).toBeInTheDocument();
+      expect(screen.getByTestId('navigation')).toBeInTheDocument();
+      expect(screen.getByTestId('footer')).toBeInTheDocument();
     });
 
-    it('positions the graphic component correctly in the layout', () => {
+    it('positions all components correctly in the layout', () => {
       const main = screen.getByRole('main');
-      const graphic = screen.getByTestId('problem-solution-graphic');
-      expect(main).toContainElement(graphic);
+      expect(main).toContainElement(screen.getByTestId('problem-solution-graphic'));
+      expect(main).toContainElement(screen.getByTestId('interactive-demo'));
+      expect(main).toContainElement(screen.getByTestId('data-visualization'));
+      expect(main).toContainElement(screen.getByTestId('performance-monitor'));
     });
   });
 
@@ -130,18 +166,18 @@ describe('Home Page', () => {
     });
 
     it('has descriptive text content for screen readers', () => {
-      expect(screen.getByText('UI Component Showcase')).toBeInTheDocument();
-      expect(screen.getByText(/A responsive, three-step visual component/)).toBeInTheDocument();
+      expect(screen.getByText('Professional UI Component Showcase')).toBeInTheDocument();
+      expect(screen.getByText(/A comprehensive collection of responsive, interactive components/)).toBeInTheDocument();
     });
   });
 
   describe('Component Behavior', () => {
     it('renders consistently across re-renders', () => {
       const { rerender } = render(<Home />);
-      expect(screen.getByText('UI Component Showcase')).toBeInTheDocument();
+      expect(screen.getByText('Professional UI Component Showcase')).toBeInTheDocument();
       
       rerender(<Home />);
-      expect(screen.getByText('UI Component Showcase')).toBeInTheDocument();
+      expect(screen.getByText('Professional UI Component Showcase')).toBeInTheDocument();
     });
 
     it('maintains structure across re-renders', () => {
